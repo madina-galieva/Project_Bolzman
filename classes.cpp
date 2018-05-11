@@ -1,8 +1,47 @@
 #include "classes.h"
 
+//*************************Класс «Ящик»************************ // класс Ящик - прямоугольный сосуд, в котором находятся молекулы
+void Box::Paint_box (int lux, int luy, int length, int height)  // переменные - координаты левого верхнего угла,
+    {                                                           // а также длина и высота ящика
+        /*                                                      // можно задать ящик через координаты противоположных углов, переделаем, если потребуется, 
+        QColor mycolor;
+        mycolor.setRgb(200, 200, 200);                          // цвет ящика (тут должен быть серый)
+        QRect box(QPoint(lux, luy), QSize(length, height));     // добавить библиотеку <QRect> в classes.h
+        
+        
+        
+        setcolor(15);
+        if( angle == 0)  // в зависимости от значения угла рисовать горизонтальную или вертикальную стенку
+                  bar(ix-5,iy-5,ix+length,iy);
+        else bar(ix-15,iy-5,ix,iy+length);
+        setcolor(color); */
+    }
+void Box::paintEvent (QPaintEvent *box)  // переменные - координаты левого верхнего угла,
+    {                                                           // а также длина и высота ящика
+                                                                // можно задать ящик через координаты противоположных углов, переделаем, если потребуется, 
+        QColor mycolor;
+        mycolor.setRgb(200, 200, 200);                          // цвет ящика (тут должен быть серый)
+        QRect box(QPoint(lux, luy), QSize(length, height));     // добавить библиотеку <QRect> в classes.h
+        QPainter pnt(this);
+        pnt.DrawRect(box);
+        
+        
+        
+       /* setcolor(15);
+        if( angle == 0)  // в зависимости от значения угла рисовать горизонтальную или вертикальную стенку
+                  bar(ix-5,iy-5,ix+length,iy);
+        else bar(ix-15,iy-5,ix,iy+length);
+        setcolor(color); */
+    }
+
+
+
 //*************************Класс «Стенка»************************
 void Wall::show (int ix,int iy)
     {
+        QColor mycolor;
+        mycolor.setRgb(200, 200, 200);
+        
        /* setcolor(15);
         if( angle == 0)  // в зависимости от значения угла рисовать горизонтальную или вертикальную стенку
                   bar(ix-5,iy-5,ix+length,iy);
@@ -12,20 +51,27 @@ void Wall::show (int ix,int iy)
 
 
 //*************************Класс «Перегородка»**********************
-void Barrier :: hide (int ix,int iy)
-    {
+void Barrier :: Hide_barrier (int ix,int iy)
+    {   
+        /*
         setcolor(color);
         line(ix,iy,ix,centre_y-hole_radius);
         line(ix,centre_y+hole_radius,ix,460);
         setcolor(15);
+        */
     }
 
-void Barrier :: show(int ix,int iy)
-    {
+void Barrier :: Paint_barrier (int ix,int iy)
+    {   
+        QColor mycolor;
+        mycolor.setRgb(200, 200, 200);
+        
+        /*
         setcolor(15);
         line(ix,iy,ix,centre_y-hole_radius);
         line(ix,centre_y+hole_radius,ix,460);
         setcolor(color);
+        */
     }
 
 int Barrier::hole_scale(int dy)
@@ -48,6 +94,9 @@ void Barrier::move(int dx)
 //************************************Класс «Молекула»*********************************
 void Ball::show()
     {
+        QColor mycolor;
+        mycolor.setRgb(200, 0, 0);
+        
         //нарисовать круг
     }
 
