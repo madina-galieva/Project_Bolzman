@@ -1,13 +1,15 @@
 #include <iostream.h>
 #include <cmath>
 #include <QObject>
+#include <QWidget>
+#include <QPainter>
 
 #define Rad  0.01745 // константа для перевода градусов в радианы
 #define velo 6 // скорость молекулы
 
 
 //*************************Класс «Стенка»************************
-class Wall : public QObject
+class Wall : public QWidget // QObject
 {
    Q_OBJECT
 protected:
@@ -24,7 +26,7 @@ signals:
 };
 
 //*************************Класс «Перегородка»**********************
-class Barrier : public QObject
+class Barrier : public QWidget // QObject
 {
     Q_OBJECT
 protected:
@@ -48,7 +50,7 @@ signals:
 };
 
 //************************************Класс «Молекула»*********************************
-class Ball : public QObject
+class Ball : public QWidget // QObject
 {
     Q_OBJECT
 protected:
