@@ -1,6 +1,9 @@
 #include <iostream.h>
 #include <cmath>
 #include <QObject>
+#include <QWidget>
+#include <QColor>
+#include <QLine>
 
 #define Rad  0.01745 // константа для перевода градусов в радианы
 #define velo 6 // скорость молекулы
@@ -9,16 +12,17 @@
 //*************************Класс «Стенка»************************
 class Wall : public QObject
 {
-   Q_OBJECT
+    Q_OBJECT
 protected:
     int length;
     int angle; //90 или 0 градусов
     int x,y;
+    void paintEvent(QPaintEvent *event);            // не уверена, что должна быть в protected, может, в public
 public:
     Wall (int l, int a) { length = l; angle = a; } //конструктор
 public slots:
-    void show (int ix,int iy); // нарисовать стенку
-signals:
+            void show (int ix,int iy); // нарисовать стенку
+    signals:
 
 };
 
@@ -30,18 +34,19 @@ protected:
     int centre_x;  // координаты центра
     int centre_y;
     int hole_radius; // радиус отверстия в перегородке
+    void paintEvent(QPaintEvent *event);            // не уверена, что должна быть в protected, может, в public
 public:
     Barrier (int icx, int icy, int d)
-       {centre_x = icx; centre_y = icy; hole_radius = d;}
+    {centre_x = icx; centre_y = icy; hole_radius = d;}
 public slots:
-    void hide (int ix,int iy); //скрыть перегородку
-    void show (int ix,int iy); //нарисовать  перегородку
+    void hide(); //скрыть перегородку
+    void show(); //нарисовать  перегородку
     int hole_scale (int dy);  // изменение радиуса отверстия в перегородке
     void move (int dx); // поменять положение перегородки
     int getcentre_x()  { return centre_x; }
     int getcentre_y()  { return centre_y; }
     int gethole_radius() { return hole_radius; }
-signals:
+    signals:
 
 };
 
@@ -54,6 +59,8 @@ protected:
     int centreY;
     int radius;//радиус молекулы
     double angl; //угол определяющий направление движения молекулы
+    void paintEvent(QPaintEvent *event);            // не уверена, что должна быть в protected, может, в public
+
 public:
     Ball() {;}
 public slots:
@@ -64,12 +71,12 @@ public slots:
     int hit_on_wall (); //столкновение со стенкой
     void hit_on_barr (int x, int y, int d); // столкновение с перегородкой
     void set (int m, int value) //функция инициализирующая поля класса (в зависимости от значения m)
-     {
-     if(m==1) centreX = value;
-     if(m==2) centreY = value;
-     if(m==3) radius = value;
-     if(m==4) angl = 1.0*value;
-     }
-signals:
+    {
+        if(m==1) centreX = value;
+        if(m==2) centreY = value;
+        if(m==3) radius = value;
+        if(m==4) angl = 1.0*value;
+    }
+    signals:
 
 };
